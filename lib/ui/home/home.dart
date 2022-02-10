@@ -98,8 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: const Icon(
                       Icons.delete,
                     ),
-                    iconSize: 50,
-                    color: Colors.green,
+                    iconSize: 24,
+                    color: Colors.red,
                     splashColor: Colors.purple,
                     onPressed: () {
                       _deleteNote(item.item.id);
