@@ -19,12 +19,11 @@ class MessageItem implements ListItem {
 
   MessageItem(this.item);
 
-
   @override
   Widget buildTitle(BuildContext context) => Text(item.name);
 
   @override
-  Widget buildSubtitle(BuildContext context) => Text(item.description);
+  Widget buildSubtitle(BuildContext context) => Text(item.description ?? '');
 
   @override
   Widget buildTime(BuildContext context) => Text('${item.timestamp}');
