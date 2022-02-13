@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_db/data/local/db/note/note_entity.dart';
 import 'package:flutter_db/data/repository/note_repository.dart';
 
-import '../../data/local/db/db_helper.dart';
 import '../components/list.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,7 +14,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final dbHelper = DatabaseHelper.instance;
   final textFieldController = TextEditingController();
   List<MessageItem> items = List.empty();
   int _counter = 0;
@@ -23,12 +21,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addNote() async {
     final timestamp = DateTime.now().millisecond;
-    Map<String, dynamic> row = {
-      NoteEntity.columnName: _text.toString(),
-      NoteEntity.columnDescription: 'No.$_counter',
-      NoteEntity.columnTimestamp: timestamp,
-    };
-    final id = await noteRepository.insert(row);
+    NoteEntity note = NoteEntity(
+        name: _text.toString(),
+        description: 'No.$_counter',
+        timestamp: timestamp);
+    final id = await noteRepository.insert(note);
     reset();
     _getNotes();
   }
